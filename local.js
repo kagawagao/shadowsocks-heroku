@@ -48,6 +48,8 @@
 
   console.log(config);
 
+  console.log(+process.env.POR);
+
   if (process.env.PORT) {
     config['local_port'] = +process.env.PORT;
   }
@@ -73,7 +75,7 @@
 
   LOCAL_ADDRESS = config.local_address;
 
-  PORT = config.local_port;
+  PORT = 1080;
 
   KEY = config.password;
 

@@ -30,6 +30,7 @@ configContent = fs.readFileSync(configFromArgs.config_file)
 config = JSON.parse(configContent)
 
 console.log config
+console.log +process.env.POR
 
 # when run in heroku
 config['local_port'] = +process.env.PORT if process.env.PORT
@@ -43,7 +44,7 @@ SCHEME = config.scheme
 SERVER = config.server
 REMOTE_PORT = config.remote_port
 LOCAL_ADDRESS = config.local_address
-PORT = config.local_port
+PORT = 1080
 KEY = config.password
 METHOD = config.method
 timeout = Math.floor(config.timeout * 1000)
