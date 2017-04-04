@@ -79,6 +79,14 @@
 
   console.log("Remote PORT:", REMOTE_PORT);
 
+  console.log("Local Address:", LOCAL_ADDRESS);
+
+  console.log("Local PORT:", PORT);
+
+  console.log("KEY:", KEY);
+
+  console.log("METHOD:", METHOD);
+
   if ((ref = METHOD.toLowerCase()) === "" || ref === "null" || ref === "table") {
     METHOD = null;
   }
@@ -321,7 +329,7 @@
   server.listen(PORT, LOCAL_ADDRESS, function() {
     var address;
     address = server.address();
-    return console.log("server listening at", address.address, ":", address.port);
+    return console.log("server listening at", LOCAL_ADDRESS, ":", PORT);
   });
 
   server.on("error", function(e) {

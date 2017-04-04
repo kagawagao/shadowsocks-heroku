@@ -47,6 +47,11 @@ timeout = Math.floor(config.timeout * 1000)
 console.log "Remote Address:", SERVER
 console.log "Remote PORT:", REMOTE_PORT
 
+console.log "Local Address:", LOCAL_ADDRESS
+console.log "Local PORT:", PORT
+console.log "KEY:", KEY
+console.log "METHOD:", METHOD
+
 if METHOD.toLowerCase() in ["", "null", "table"]
   METHOD = null
 
@@ -259,7 +264,7 @@ server = net.createServer (connection) ->
 
 server.listen PORT, LOCAL_ADDRESS, ->
   address = server.address()
-  console.log "server listening at", address.address, ":", address.port
+  console.log "server listening at", LOCAL_ADDRESS, ":", PORT
 
 server.on "error", (e) ->
   console.log "address in use, aborting" if e.code is "EADDRINUSE"
