@@ -13,6 +13,6 @@
   "scripts": {
     "start": "npm run server && npm run proxy",
     "server": "node server.js -b 0.0.0.0",
-    "proxy": "PORT=1080 && node local.js"
+    "proxy": "node local.js"
   }
 }

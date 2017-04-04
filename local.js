@@ -54,6 +54,10 @@
 
   console.log(process.env.METHOD);
 
+  if (process.env.PORT) {
+    config['local_port'] = +process.env.PORT;
+  }
+
   if (process.env.KEY) {
     config['password'] = process.env.KEY;
   }
@@ -75,7 +79,7 @@
 
   LOCAL_ADDRESS = config.local_address;
 
-  PORT = process.env.PORT || config.local_port;
+  PORT = config.local_port;
 
   KEY = config.password;
 

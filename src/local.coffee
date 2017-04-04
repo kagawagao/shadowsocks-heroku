@@ -35,7 +35,7 @@ console.log process.env.KEY
 console.log process.env.METHOD
 
 # when run in heroku
-# config['local_port'] = +process.env.PORT if process.env.PORT
+config['local_port'] = +process.env.PORT if process.env.PORT
 config['password'] = process.env.KEY if process.env.KEY
 config['method'] = process.env.METHOD if process.env.METHOD
 
@@ -46,7 +46,7 @@ SCHEME = config.scheme
 SERVER = config.server
 REMOTE_PORT = config.remote_port
 LOCAL_ADDRESS = config.local_address
-PORT = process.env.PORT || config.local_port
+PORT = config.local_port
 KEY = config.password
 METHOD = config.method
 timeout = Math.floor(config.timeout * 1000)
