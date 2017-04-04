@@ -28,6 +28,12 @@ inetNtoa = (buf) ->
 configFromArgs = parseArgs process.argv.slice(2), options
 configContent = fs.readFileSync(configFromArgs.config_file)
 config = JSON.parse(configContent)
+
+# when run in heroku
+config['local_port'] = +process.env.PORT if process.env.PORT
+config['password'] = process.env.KEY if process.env.KEY
+config['method'] = process.env.METHOD if process.env.METHOD
+
 for k, v of configFromArgs
   config[k] = v
 
@@ -38,12 +44,9 @@ LOCAL_ADDRESS = config.local_address
 PORT = config.local_port
 KEY = config.password
 METHOD = config.method
-
-# when run in heroku
-PORT = process.env.PORT if process.env.PORT
-KEY = process.env.KEY if process.env.KEY
-METHOD = process.env.METHOD if process.env.METHOD
 timeout = Math.floor(config.timeout * 1000)
+
+console.log config
 
 console.log "Remote Address:", SERVER
 console.log "Remote PORT:", REMOTE_PORT

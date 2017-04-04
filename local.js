@@ -46,6 +46,18 @@
 
   config = JSON.parse(configContent);
 
+  if (process.env.PORT) {
+    config['local_port'] = +process.env.PORT;
+  }
+
+  if (process.env.KEY) {
+    config['password'] = process.env.KEY;
+  }
+
+  if (process.env.METHOD) {
+    config['method'] = process.env.METHOD;
+  }
+
   for (k in configFromArgs) {
     v = configFromArgs[k];
     config[k] = v;
@@ -65,19 +77,9 @@
 
   METHOD = config.method;
 
-  if (process.env.PORT) {
-    PORT = process.env.PORT;
-  }
-
-  if (process.env.KEY) {
-    KEY = process.env.KEY;
-  }
-
-  if (process.env.METHOD) {
-    METHOD = process.env.METHOD;
-  }
-
   timeout = Math.floor(config.timeout * 1000);
+
+  console.log(config);
 
   console.log("Remote Address:", SERVER);
 
