@@ -46,6 +46,8 @@
 
   config = JSON.parse(configContent);
 
+  console.log(config);
+
   if (process.env.PORT) {
     config['local_port'] = +process.env.PORT;
   }

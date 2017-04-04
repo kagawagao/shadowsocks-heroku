@@ -13,6 +13,6 @@
   "scripts": {
     "start": "npm run server && npm run proxy",
     "server": "node server.js -b 0.0.0.0",
-    "proxy": "node local.js -c config.json"
+    "proxy": "node local.js"
   }
 }

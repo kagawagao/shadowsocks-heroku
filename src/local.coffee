@@ -29,6 +29,8 @@ configFromArgs = parseArgs process.argv.slice(2), options
 configContent = fs.readFileSync(configFromArgs.config_file)
 config = JSON.parse(configContent)
 
+console.log config
+
 # when run in heroku
 config['local_port'] = +process.env.PORT if process.env.PORT
 config['password'] = process.env.KEY if process.env.KEY
