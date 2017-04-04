@@ -1,5 +1,5 @@
 {
-  "server": "0.0.0.0",
+  "server": "tissot-server.herokuapp.com",
   "local_address": "0.0.0.0",
   "scheme": "ws",
   "local_port": 1080,
