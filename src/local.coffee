@@ -40,6 +40,7 @@ KEY = config.password
 METHOD = config.method
 
 # when run in heroku
+PORT = process.env.PORT if process.env.PORT
 KEY = process.env.KEY if process.env.KEY
 METHOD = process.env.METHOD if process.env.METHOD
 timeout = Math.floor(config.timeout * 1000)

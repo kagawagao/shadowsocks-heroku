@@ -65,6 +65,10 @@
 
   METHOD = config.method;
 
+  if (process.env.PORT) {
+    PORT = process.env.PORT;
+  }
+
   if (process.env.KEY) {
     KEY = process.env.KEY;
   }
