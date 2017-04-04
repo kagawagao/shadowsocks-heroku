@@ -65,10 +65,6 @@
 
   METHOD = config.method;
 
-  if (process.env.PORT) {
-    REMOTE_PORT = +process.env.PORT;
-  }
-
   if (process.env.KEY) {
     KEY = process.env.KEY;
   }
@@ -78,6 +74,10 @@
   }
 
   timeout = Math.floor(config.timeout * 1000);
+
+  console.log("Remote Address:", SERVER);
+
+  console.log("Remote PORT:", REMOTE_PORT);
 
   if ((ref = METHOD.toLowerCase()) === "" || ref === "null" || ref === "table") {
     METHOD = null;
@@ -321,7 +321,7 @@
   server.listen(PORT, LOCAL_ADDRESS, function() {
     var address;
     address = server.address();
-    return console.log("server listening at", address);
+    return console.log("server listening at", address.address, ":", address.port);
   });
 
   server.on("error", function(e) {

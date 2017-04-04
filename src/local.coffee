@@ -40,10 +40,12 @@ KEY = config.password
 METHOD = config.method
 
 # when run in heroku
-REMOTE_PORT = +process.env.PORT if process.env.PORT
 KEY = process.env.KEY if process.env.KEY
 METHOD = process.env.METHOD if process.env.METHOD
 timeout = Math.floor(config.timeout * 1000)
+
+console.log "Remote Address:", SERVER
+console.log "Remote PORT:", REMOTE_PORT
 
 if METHOD.toLowerCase() in ["", "null", "table"]
   METHOD = null
@@ -257,7 +259,7 @@ server = net.createServer (connection) ->
 
 server.listen PORT, LOCAL_ADDRESS, ->
   address = server.address()
-  console.log "server listening at", address
+  console.log "server listening at", address.address, ":", address.port
 
 server.on "error", (e) ->
   console.log "address in use, aborting" if e.code is "EADDRINUSE"
