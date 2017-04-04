@@ -75,7 +75,7 @@
 
   LOCAL_ADDRESS = config.local_address;
 
-  PORT = config.local_port;
+  PORT = process.env.PORT || config.local_port;
 
   KEY = config.password;
 
