@@ -38,12 +38,17 @@ LOCAL_ADDRESS = config.local_address
 PORT = config.local_port
 KEY = config.password
 METHOD = config.method
+
+# when run in heroku
+REMOTE_PORT = +process.env.PORT if process.env.PORT
+KEY = process.env.KEY if process.env.KEY
+METHOD = process.env.METHOD if process.env.METHOD
 timeout = Math.floor(config.timeout * 1000)
 
 if METHOD.toLowerCase() in ["", "null", "table"]
   METHOD = null
-  
-HTTPPROXY = process.env.http_proxy   
+
+HTTPPROXY = process.env.http_proxy
 
 if HTTPPROXY
   console.log "http proxy:", HTTPPROXY
@@ -143,18 +148,18 @@ server = net.createServer (connection) ->
         # ws = new WebSocket aServer, protocol: "binary"
 
         if HTTPPROXY
-          # WebSocket endpoint for the proxy to connect to 
+          # WebSocket endpoint for the proxy to connect to
           endpoint = aServer
           parsed = url.parse(endpoint)
           #console.log('attempting to connect to WebSocket %j', endpoint);
-               
-          # create an instance of the `HttpsProxyAgent` class with the proxy server information 
+
+          # create an instance of the `HttpsProxyAgent` class with the proxy server information
           opts = url.parse(HTTPPROXY)
-               
-          # IMPORTANT! Set the `secureEndpoint` option to `false` when connecting 
-          #            over "ws://", but `true` when connecting over "wss://" 
+
+          # IMPORTANT! Set the `secureEndpoint` option to `false` when connecting
+          #            over "ws://", but `true` when connecting over "wss://"
           opts.secureEndpoint = parsed.protocol ? parsed.protocol == 'wss:' : false
-               
+
           agent = new HttpsProxyAgent(opts)
 
           ws = new WebSocket(aServer, {
@@ -165,7 +170,7 @@ server = net.createServer (connection) ->
           ws = new WebSocket(aServer, {
                 protocol: "binary"
               });
-        
+
         ws.on "open", ->
           ws._socket.on "error", (e) ->
             console.log "remote #{remoteAddr}:#{remotePort} #{e}"
