@@ -12,7 +12,15 @@
   },
   "scripts": {
     "start": "npm run server && npm run proxy",
-    "server": "node server.js -b 0.0.0.0",
-    "proxy": "node local.js"
+    "server": "node ./server.js -b 0.0.0.0",
+    "proxy": "node ./lib/local.js"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
